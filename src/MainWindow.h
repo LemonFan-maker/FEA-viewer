@@ -20,6 +20,11 @@
 #include <vtkRenderWindowInteractor.h>
 #include <vtkXMLUnstructuredGridReader.h>
 #include <vtkUnstructuredGridReader.h>
+#include <vtkSTLReader.h>
+#include <vtkOBJReader.h>
+#include <vtkPLYReader.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkPolyData.h>
 #include <vtkDataSetMapper.h>
 #include <vtkActor.h>
 #include <vtkScalarBarActor.h>
@@ -37,6 +42,14 @@
 #include <vtkAxesActor.h>
 #include <vtkOrientationMarkerWidget.h>
 #include <vtkColorSeries.h>
+#include <QDockWidget>
+#include <QStatusBar>
+
+// 包含功能模块
+#include "visualization/ClippingWidget.h"
+#include "visualization/ContourWidget.h"
+#include "visualization/VectorFieldWidget.h"
+#include "interaction/DataPicker.h"
 
 class MainWindow : public QMainWindow
 {
@@ -52,16 +65,24 @@ private slots:
     void onDisplayModeChanged(int state);
     void onColorMapChanged(const QString &colorMapName);
     void onOpacityChanged(int value);
+    void onClippingChanged();
+    void onContoursChanged();
+    void onVectorVisualizationChanged();
+    void onPointPicked(const QString &info);
+    void onVTKWidgetMousePress(QMouseEvent *event);
 
 private:
     void setupUI();
     void setupVTK();
+    void setupDockWidgets();
     void updateVisualization();
     void populateDataComboBox();
     void resetView();
     void setupColorMaps();
     void applyColorMap(const QString &colorMapName);
     void updateDisplayMode();
+    void updateAdvancedFeatures();
+    void setupGeometryVisualization();
 
     // UI组件
     QPushButton *m_openFileButton;
@@ -78,6 +99,10 @@ private:
     vtkSmartPointer<vtkRenderer> m_renderer;
     vtkSmartPointer<vtkXMLUnstructuredGridReader> m_xmlReader;
     vtkSmartPointer<vtkUnstructuredGridReader> m_legacyReader;
+    vtkSmartPointer<vtkSTLReader> m_stlReader;
+    vtkSmartPointer<vtkOBJReader> m_objReader;
+    vtkSmartPointer<vtkPLYReader> m_plyReader;
+    vtkSmartPointer<vtkPolyDataMapper> m_geometryMapper;
     vtkSmartPointer<vtkDataSetMapper> m_mapper;
     vtkSmartPointer<vtkDataSetMapper> m_wireframeMapper;
     vtkSmartPointer<vtkActor> m_actor;
@@ -87,10 +112,33 @@ private:
     vtkSmartPointer<vtkAxesActor> m_axesActor;
     vtkSmartPointer<vtkOrientationMarkerWidget> m_orientationWidget;
 
+    // 功能模块
+    ClippingWidget *m_clippingWidget;
+    ContourWidget *m_contourWidget;
+    VectorFieldWidget *m_vectorFieldWidget;
+    DataPicker *m_dataPicker;
+    
+    // 停靠窗口
+    QDockWidget *m_clippingDock;
+    QDockWidget *m_contourDock;
+    QDockWidget *m_vectorFieldDock;
+    
+    // 菜单项
+    QAction *m_pickingAction;
+
+    // 数据类型枚举
+    enum DataType {
+        DATA_TYPE_NONE,
+        DATA_TYPE_UNSTRUCTURED_GRID,  // VTK分析数据
+        DATA_TYPE_GEOMETRY_ONLY       // 纯几何数据（STL、OBJ、PLY等）
+    };
+    
     // 数据
     vtkSmartPointer<vtkUnstructuredGrid> m_currentData;
+    vtkSmartPointer<vtkPolyData> m_currentGeometryData;
     QString m_currentFileName;
     QString m_currentDataArrayName;
+    DataType m_currentDataType;
 };
 
 #endif // MAINWINDOW_H

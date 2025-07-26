@@ -1,0 +1,10 @@
+^C:\USERS\22546\DESKTOP\PROJECTS\OCFD-GIT\CMAKELISTS.TXT
+setlocal
+H:\Programs\CMake\bin\cmake.exe -SC:/Users/22546/Desktop/projects/OCFD-git -BC:/Users/22546/Desktop/projects/OCFD-git/build --check-stamp-file C:/Users/22546/Desktop/projects/OCFD-git/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

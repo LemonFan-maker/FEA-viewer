@@ -10,17 +10,26 @@ import subprocess
 import shutil
 import glob
 
-def run_command(cmd, cwd=None):
+def run_command(cmd, cwd=None, show_output=True):
     """运行命令并返回结果"""
     print(f"执行命令: {cmd}")
     try:
         result = subprocess.run(cmd, shell=True, cwd=cwd, 
                               capture_output=True, text=True, encoding='utf-8')
-        if result.returncode != 0:
-            print(f"错误: {result.stderr}")
-            return False
-        if result.stdout.strip():
+        
+        # 总是显示输出，便于调试
+        if result.stdout.strip() and show_output:
+            print("标准输出:")
             print(result.stdout)
+        
+        if result.stderr.strip():
+            print("错误输出:")
+            print(result.stderr)
+        
+        if result.returncode != 0:
+            print(f"命令执行失败，返回码: {result.returncode}")
+            return False
+        
         return True
     except Exception as e:
         print(f"执行命令失败: {e}")

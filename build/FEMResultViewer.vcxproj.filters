@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\build\FEMResultViewer_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\MainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\ClippingWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\ContourWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\VectorFieldWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\src\interaction\DataPicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\build\FEMResultViewer_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\build\FEMResultViewer_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\22546\Desktop\projects\OCFD-git\build\FEMResultViewer_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\22546\Desktop\projects\OCFD-git\src\MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\ClippingWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\ContourWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\22546\Desktop\projects\OCFD-git\src\visualization\VectorFieldWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\22546\Desktop\projects\OCFD-git\src\interaction\DataPicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\22546\Desktop\projects\OCFD-git\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{31195E4C-CE0A-311D-A9B8-AB3124EDA820}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{232CD993-BD03-3566-A0A7-686258C0B186}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

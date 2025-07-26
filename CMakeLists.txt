@@ -31,6 +31,9 @@ find_package(VTK REQUIRED COMPONENTS
     IOXMLParser
     IOLegacy
     IOImage
+    IOGeometry
+    IOPLY
+    IOImport
     RenderingCore
     RenderingOpenGL2
     RenderingAnnotation
@@ -39,6 +42,11 @@ find_package(VTK REQUIRED COMPONENTS
     InteractionStyle
     InteractionWidgets
     GUISupportQt
+    RenderingAnnotation
+    FiltersGeneral
+    FiltersCore
+    FiltersSources
+    FiltersFlowPaths
 )
 
 # 查找Eigen
@@ -54,6 +62,14 @@ set(SOURCES
     src/main.cpp
     src/MainWindow.cpp
     src/MainWindow.h
+    src/visualization/ClippingWidget.cpp
+    src/visualization/ClippingWidget.h
+    src/visualization/ContourWidget.cpp
+    src/visualization/ContourWidget.h
+    src/visualization/VectorFieldWidget.cpp
+    src/visualization/VectorFieldWidget.h
+    src/interaction/DataPicker.cpp
+    src/interaction/DataPicker.h
 )
 
 # 创建可执行文件
@@ -129,6 +145,7 @@ if(WIN32)
         vtkCommonTransforms-9.5.dll
         # 过滤器
         vtkFiltersCore-9.5.dll
+        vtkFiltersGeneral-9.5.dll
         # IO库
         vtkIOCore-9.5.dll
         vtkIOXML-9.5.dll

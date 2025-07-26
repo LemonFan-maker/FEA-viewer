@@ -23,9 +23,7 @@ def main():
     else:
         print("错误: 找不到可执行文件")
         print("请先运行构建脚本:")
-        print("  python build_and_deploy.py")
-        print("或使用主控制面板:")
-        print("  python main.py")
+        print("  python build.py")
         input("按回车键退出...")
         sys.exit(1)
 
