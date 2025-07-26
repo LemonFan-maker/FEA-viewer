@@ -4,11 +4,15 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QComboBox>
+#include <QCheckBox>
+#include <QSlider>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QGridLayout>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QLabel>
+#include <QGroupBox>
 
 #include <QVTKOpenGLNativeWidget.h>
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -29,6 +33,10 @@
 #include <vtkInteractorStyleTrackballCamera.h>
 #include <vtkSmartPointer.h>
 #include <vtkNew.h>
+#include <vtkProperty.h>
+#include <vtkAxesActor.h>
+#include <vtkOrientationMarkerWidget.h>
+#include <vtkColorSeries.h>
 
 class MainWindow : public QMainWindow
 {
@@ -41,6 +49,9 @@ public:
 private slots:
     void openFile();
     void onDataSelectionChanged(const QString &dataName);
+    void onDisplayModeChanged(int state);
+    void onColorMapChanged(const QString &colorMapName);
+    void onOpacityChanged(int value);
 
 private:
     void setupUI();
@@ -48,11 +59,18 @@ private:
     void updateVisualization();
     void populateDataComboBox();
     void resetView();
+    void setupColorMaps();
+    void applyColorMap(const QString &colorMapName);
+    void updateDisplayMode();
 
     // UI组件
     QPushButton *m_openFileButton;
     QComboBox *m_dataComboBox;
+    QCheckBox *m_wireframeCheckBox;
+    QComboBox *m_colorMapComboBox;
+    QSlider *m_opacitySlider;
     QLabel *m_statusLabel;
+    QLabel *m_opacityLabel;
     QVTKOpenGLNativeWidget *m_vtkWidget;
 
     // VTK组件
@@ -61,9 +79,13 @@ private:
     vtkSmartPointer<vtkXMLUnstructuredGridReader> m_xmlReader;
     vtkSmartPointer<vtkUnstructuredGridReader> m_legacyReader;
     vtkSmartPointer<vtkDataSetMapper> m_mapper;
+    vtkSmartPointer<vtkDataSetMapper> m_wireframeMapper;
     vtkSmartPointer<vtkActor> m_actor;
+    vtkSmartPointer<vtkActor> m_wireframeActor;
     vtkSmartPointer<vtkScalarBarActor> m_scalarBar;
     vtkSmartPointer<vtkLookupTable> m_lookupTable;
+    vtkSmartPointer<vtkAxesActor> m_axesActor;
+    vtkSmartPointer<vtkOrientationMarkerWidget> m_orientationWidget;
 
     // 数据
     vtkSmartPointer<vtkUnstructuredGrid> m_currentData;
